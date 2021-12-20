@@ -1,4 +1,4 @@
-# Docker Compose Spring Eureka,Spring Cloud API Gateway,FeignClient Example
+# Docker Compose Spring Boot,Zipkin and Cassandra storage example ( also using DTO mapper )
 
 ## Run the System
 We can easily run the whole with only a single command:
@@ -22,21 +22,18 @@ If you need to stop and remove all containers, networks, and all images used by 
 
 ### EndPoints ###
 
-| Service       | EndPoint                               | Method | Description                                      |
-| ------------- | -----------------------------          | :-----:| ------------------------------------------------ |
-| Customer      | /api/v1/customer/order/{customerid}    | GET    | Return customer order detail               	     |
-| Product       | /api/v1/product/{id}              	 | GET    | Return product detail                      	 |
+| Service       | EndPoint                      | Method | Description                                      |
+| ------------- | ----------------------------- | :-----:| ------------------------------------------------ |
+| Book          | /api/v1/book    				| GET    | Return book list             	                |
 
-customer-service microservice connect to product-service via **Feign**
+- **Zipkin**
 
-- **Eureka**
+![Zipkin](https://github.com/tugayesilyurt/spring-zipkin-cassandra/blob/main/assets/zipkin.PNG)
 
-You can open Eureka : http://localhost:8761
-username:admin
-password:admin
+- **Cassandra**
 
-![Eureka](https://github.com/tugayesilyurt/spring-eureka-gateway-feign-example/blob/main/assets/eureka.PNG)
+![Postman](https://github.com/tugayesilyurt/spring-zipkin-cassandra/blob/main/assets/cassandra.PNG)
 	
 - **Postman**
 
-![Postman](https://github.com/tugayesilyurt/spring-eureka-gateway-feign-example/blob/main/assets/postman.PNG)
+![Postman](https://github.com/tugayesilyurt/spring-zipkin-cassandra/blob/main/assets/postman.PNG)
