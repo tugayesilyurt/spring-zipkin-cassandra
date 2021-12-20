@@ -1,0 +1,9 @@
+server:
+  port: 2201
+
+spring:
+  application:
+    name: BOOK-SERVICE
+  zipkin:
+    enabled: true
+    baseUrl:  http://127.0.0.1:9411/

@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  storage:
+    image: openzipkin/zipkin-cassandra
+    container_name: cassandra
+    ports:
+       - 9042:9042
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=cassandra3
+      - CASSANDRA_ENSURE_SCHEMA=false
+      - CASSANDRA_CONTACT_POINTS=cassandra
+    depends_on:
+      - storage
+    ports:
+      - 9411:9411
+  dependencies:
+    image: openzipkin/zipkin-dependencies
+    container_name: dependencies
+    entrypoint: crond -f
+    environment:
+      - STORAGE_TYPE=cassandra3
+      - CASSANDRA_CONTACT_POINTS=cassandra
+    depends_on:
+      - storage
+  book-service:
+    image: tugayesilyurt/book-service
+    container_name: book-service
+    build: 
+       context: ./book-service
+       dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "2200:2200"
+    depends_on:
+      - storage
